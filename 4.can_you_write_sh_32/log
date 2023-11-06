@@ -1,0 +1,15 @@
+关闭pie
+gcc -no-pie test test.c
+关闭NX
+ gcc -z execstack -o test test.c
+关闭canary
+gcc -fno-stack-protector -o test test.c   // 禁用栈保护
+
+gcc -no-pie -z execstack -fno-stack-protector -o a 1.c
+
+测试
+socat tcp-listen:12345,reuseaddr,fork exec:./pwn
+
+build image
+sudo docker build -t xingk0ng/pwn3:0.0 .
+
